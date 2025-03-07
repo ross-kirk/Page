@@ -8,9 +8,10 @@
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0; background-color: #1e1e1e;">
     <canvas id="unity-canvas" width=960 height=600 tabindex="-1" style="width: 960px; height: 600px; background: #231F20"></canvas>
-    <script src="Build/build.loader.js"></script>
+    <script src="Build/web.loader.js"></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
         var meta = document.createElement('meta');
         meta.name = 'viewport';
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
@@ -26,13 +27,15 @@
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
         arguments: [],
-        dataUrl: "Build/build.data",
-        frameworkUrl: "Build/build.framework.js",
-        codeUrl: "Build/build.wasm",
+        dataUrl: "Build/web.data",
+        frameworkUrl: "Build/web.framework.js",
+        codeUrl: "Build/web.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "UnityRive",
         productVersion: "1.0.2",
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       });
     </script>
   </body>
